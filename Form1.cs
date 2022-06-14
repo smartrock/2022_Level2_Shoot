@@ -15,10 +15,16 @@ namespace _2022_Level2_Shoot
         Graphics g; //declare a graphics object called g
         Spaceship spaceship = new Spaceship();//create object called spaceship
         List<Missile> missiles = new List<Missile>(); //declare a list  missiles from the missile class
+        List<Planets> planets = new List<Planets>();
 
         public Form1()
         {
             InitializeComponent();
+            for (int i = 0; i < 7; i++)
+            {
+                int displacement = 10 + (i * 70);
+                planets.Add(new Planets(displacement));
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -28,6 +34,11 @@ namespace _2022_Level2_Shoot
             foreach (Missile m in missiles)
             {
                 m.draw(g);
+            }
+            foreach (Planets p in planets)
+            {
+                p.draw(g);//Draw the planet
+                p.movePlanet(g);//move the planet
             }
         }
 
